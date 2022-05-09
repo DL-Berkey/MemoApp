@@ -1,0 +1,19 @@
+button {
+    background: none;
+    border: none;
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-left: 5px;
+}
+
+#textInputForm {
+    display: flex;
+    justify-content: center;
+}
+
+#textInput {
+    height: 1.5rem;
+    width: 14rem;
+    border: 3px solid #1976d2;
+    resize: none;
+}
