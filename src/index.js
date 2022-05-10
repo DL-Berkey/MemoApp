@@ -9,7 +9,7 @@ root.render(
   <div id="main">
     <div id='content'>
       <TextInput />
-      <h5>Localstorage를 이용하고 있습니다.</h5>
+      <h6>Localstorage를 이용하고 있습니다.</h6>
     </div>
   </div>
 );
