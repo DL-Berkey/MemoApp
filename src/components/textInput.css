@@ -9,11 +9,11 @@ button {
 #textInputForm {
     display: flex;
     justify-content: center;
-    height: 1.5rem;
+    height: max-content;
 }
 
 #textInput {
-    /* height: 100%; */
+    line-height: 35px;
     width: 14rem;
     border: 3px solid #1976d2;
     border-radius: 20px;

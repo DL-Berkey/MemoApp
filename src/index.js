@@ -4,7 +4,6 @@ import './index.css';
 import TextInput from './components/textInput';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-console.log('hi');
 root.render(
   <div id="main">
     <div id='content'>
