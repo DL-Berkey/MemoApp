@@ -3,18 +3,38 @@ import "./textInput.css"
 import AspectRatioIcon from '@mui/icons-material/AspectRatio';
 import SaveIcon from '@mui/icons-material/Save';
 
-const reducer = function(state, action) {
-    console.log(state, action);
-    return state;
-};
+const resize = function() {
+
+}
 
 //size width 14 rem, height 35px
 function TextInput() {
+    const [text, setText] = useState();
+    const [style, setStyle] = useState({
+        width: 14,
+        height: 35,
+    });
+    const InputRef = useRef(); 
+
+    useEffect(() => {
+        console.log(InputRef)
+        InputRef.current.style.width = style.width + "rem"
+        InputRef.current.style.height = style.height + "px"
+    }, [style]);
+
+    const handleChangeEvent = function(event) {
+        console.log(InputRef)
+        setText(event.target.value);
+    };
+
     return (
         <form id="textInputForm">
             <textarea
                 id="textInput"
                 placeholder="언제나 간편하게 작성하세요."
+                value={ text }
+                ref={ InputRef }
+                onChange={ handleChangeEvent }
             >
             </textarea>
             <button type="button" id="expandButton" ><AspectRatioIcon color="primary" /></button>
