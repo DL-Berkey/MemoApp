@@ -3,7 +3,7 @@ import "./textInput.css"
 import AspectRatioIcon from '@mui/icons-material/AspectRatio';
 import SaveIcon from '@mui/icons-material/Save';
 
-const countChar = function (text, char) {
+const countChar = function(text, char) {
     console.log(text)
     return text.split("").filter((item) => item === char).length;
 }
@@ -15,6 +15,7 @@ function TextInput() {
         width: 14,
         height: 35,
     });
+    const [styleStack, setStyleStack] = useState([style]);
     const InputRef = useRef();
 
     useEffect(() => {
@@ -26,14 +27,33 @@ function TextInput() {
         InputRef.current.style.height = style.height + "px"
     }, [style]);
 
+    const stacker = function(setValue) {
+        let returnValue = null;
+
+        if(styleStack.length === 2) {
+            returnValue = styleStack[1];
+            setStyleStack([styleStack[0]]);
+        }
+        
+        setStyleStack([styleStack[0], setValue]);
+        console.log(styleStack)
+        return returnValue;
+    }
+
     const handleChangeEvent = (event) => {
         let value = event.target.value;
-        setText(() => event.target.value);
+        setText(() => value);
 
-        // if(text === "") {
-        //     console.log("니가 왜!!!")
-        // }
-        console.log(countChar(event.target.value, "\n"))
+        if(countChar(value, "\n") !== 0) {
+            setStyle({
+                width: style.width,
+                height: (countChar(value, "\n") + 1) * 35,
+            });
+            stacker(style)
+        }else {
+            console.log(styleStack[0])
+            setStyle(styleStack[0]);
+        }
     }
 
     return (
