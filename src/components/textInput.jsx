@@ -4,7 +4,6 @@ import AspectRatioIcon from '@mui/icons-material/AspectRatio';
 import SaveIcon from '@mui/icons-material/Save';
 
 const countChar = function(text, char) {
-    console.log(text)
     return text.split("").filter((item) => item === char).length;
 }
 
@@ -42,16 +41,24 @@ function TextInput() {
 
     const handleChangeEvent = (event) => {
         let value = event.target.value;
-        setText(() => value);
+
+        if(value.length > 1 && value.length % 17 === 0 && text[text.length - 1] !== "\n") {
+            value += "\n";
+        }
+        setTimeout(setText(() => value), 3000);
 
         if(countChar(value, "\n") !== 0) {
             setStyle({
                 width: style.width,
                 height: (countChar(value, "\n") + 1) * 35,
             });
+            console.log("!!!!!!!!!!!!!!!!!!!!")
+            console.log([...value])
             stacker(style)
         }else {
-            console.log(styleStack[0])
+            console.log("===============")
+            console.log("f",styleStack[0])
+            console.log("g",styleStack)
             setStyle(styleStack[0]);
         }
     }
