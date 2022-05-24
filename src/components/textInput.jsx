@@ -26,7 +26,7 @@ function TextInput() {
         InputRef.current.style.height = style.height + "px"
     }, [style]);
 
-    const stacker = function(setValue) {
+    const stacker = useCallback(function(setValue) {
         let returnValue = null;
 
         if(styleStack.length === 2) {
@@ -35,15 +35,20 @@ function TextInput() {
         }
         
         setStyleStack([styleStack[0], setValue]);
-        console.log(styleStack)
         return returnValue;
-    }
+    }, []);
 
     const handleChangeEvent = (event) => {
         let value = event.target.value;
 
         if(value.length > 1 && value.length % 17 === 0 && text[text.length - 1] !== "\n") {
-            value += "\n";
+            const regExp = /[^ㄱ-ㅎㅏ-ㅣ]/
+            
+            if (regExp.test(value)) {
+                console.log("done")
+                console.log(value)
+                value += "\n";
+            }
         }
         setTimeout(setText(() => value), 3000);
 
@@ -52,13 +57,8 @@ function TextInput() {
                 width: style.width,
                 height: (countChar(value, "\n") + 1) * 35,
             });
-            console.log("!!!!!!!!!!!!!!!!!!!!")
-            console.log([...value])
             stacker(style)
         }else {
-            console.log("===============")
-            console.log("f",styleStack[0])
-            console.log("g",styleStack)
             setStyle(styleStack[0]);
         }
     }
