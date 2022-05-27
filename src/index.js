@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import TextInput from './components/textInput';
+import MainComponent from './components/MainComponent';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <div id="main">
     <div id='content'>
-      <TextInput />
+      <MainComponent />
       <h6>Localstorage를 이용하고 있습니다.</h6>
     </div>
   </div>
