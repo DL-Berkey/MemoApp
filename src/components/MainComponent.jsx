@@ -27,13 +27,37 @@ function MainComponent() {
     }, []);
 
     useEffect(() => {
-        console.log(sizeStack.current)
+        let width = 0;
+        let height = 0;
+        console.log("hi3")
         if (sizeStack.current.length === 1){
-            inputRef.current.style.width = sizeStack.current[0].width + "rem"
-            inputRef.current.style.height = sizeStack.current[0].height + "px"
+            width = sizeStack.current[0].width + "rem";
+            height = sizeStack.current[0].height + "px";
+        } else {
+            console.log("hi2")
+            width = sizeStack.current[sizeStack.length - 1].width + "rem";
+            height = sizeStack.current[sizeStack.length - 1].height + "px";
         }
+        inputRef.current.style.width = width;
+        inputRef.current.style.height = height;
     }, [sizeStack]);
 
+    // const handleExpand = useCallback(() => {
+    //     console.log("hi")
+    //     sizeStack.current.push({
+    //         width: 100,
+    //         height: 100,
+    //     });
+    // }, []);
+
+    const handleExpand = function(event) {
+            sizeStack.current.push({
+                width: 100,
+                height: 100,
+            });
+            event.preventDefault();
+        };
+    
     return (
         <form id="textInputForm">
             <textarea
@@ -44,7 +68,7 @@ function MainComponent() {
             >
             </textarea>
             <SaveButton />
-            <ExpandButton />
+            <ExpandButton expand={ handleExpand } />
             <ListButton />
         </form>
     );
