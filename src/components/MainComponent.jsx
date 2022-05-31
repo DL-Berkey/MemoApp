@@ -10,11 +10,6 @@ const countChar = function (text, char) {
 
 //size width 14 rem, height 35px
 function MainComponent() {
-    // const [style, setStyle] = useState({
-    //     width: 14,
-    //     height: 35,
-    // });
-    // const [styleStack, setStyleStack] = useState([style]);
     const sizeStack = useRef([{
         width: 14,
         height: 35,
@@ -41,14 +36,6 @@ function MainComponent() {
         inputRef.current.style.width = width;
         inputRef.current.style.height = height;
     }, [sizeStack]);
-
-    // const handleExpand = useCallback(() => {
-    //     console.log("hi")
-    //     sizeStack.current.push({
-    //         width: 100,
-    //         height: 100,
-    //     });
-    // }, []);
 
     const handleExpand = function(event) {
             sizeStack.current.push({
